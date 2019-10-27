@@ -19,9 +19,10 @@ class MatchingAutomaton:
             current_state = self.transition_function[current_state][letter]
             if current_state == accepted_state:
                 number_of_occurrences += 1
-                print(f"Wzorzec {self.pattern} występuje z przesunięciem ", i - len(self.pattern)+1)
+                # print(f"Wzorzec {self.pattern} występuje z przesunięciem ", i - len(self.pattern)+1)
 
         print(f"Number of occurrences of pattern {self.pattern}: {number_of_occurrences}")
+        return number_of_occurrences
 
     def compute_transition_function(self):
         # here we only need pattern and alphabet
