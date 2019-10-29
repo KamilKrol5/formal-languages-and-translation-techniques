@@ -29,7 +29,7 @@ class KMPMatching:
                 q = q + 1  # the next symbol matches
             if q == m:  # checks if whole pattern is matched
                 number_of_occurrences += 1
-                # print(f"KMP: Wzorzec {self.pattern} występuje z przesunięciem ", i - len(self.pattern) + 1)
+                print(f"KMP: Wzorzec {self.pattern} występuje z przesunięciem ", i - len(self.pattern) + 1)
                 q = self.prefix_function[q]  #
         print(f"KMP: Number of occurrences of pattern {self.pattern}: {number_of_occurrences}")
         return number_of_occurrences
