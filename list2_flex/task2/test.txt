@@ -1,0 +1,16 @@
+<?xml version="1.1"?>
+<!DOCTYPE none>
+<root>
+  <!--foo>commented out <a>elements</a></foo-->
+  <foo var="test>  <!-- this is not a 
+            comment --> <a" href="x<!-- lol --> " > <!-- lol2 --> <xd xd="123"/>
+  <bar>
+  "<!--asdf-->"
+  </bar>
+
+  <![CDATA[
+    In CDATA <!-- everything is data!!! -->
+  ]]>
+  <!-- valid comment -->
+  <!-- invalid -- comment -->
+</root>
