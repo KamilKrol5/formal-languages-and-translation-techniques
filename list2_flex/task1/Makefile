@@ -1,8 +1,8 @@
 CC=gcc
 
-all: task1.o
+all: task1
 
-task1.o: task1.yy.c
+task1: task1.yy.c
 	$(CC) -o $@ $^ -lfl
 
 task1.yy.c: task1.lex
