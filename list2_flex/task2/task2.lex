@@ -1,13 +1,25 @@
 %option noyywrap
 
     // open symbol, something which is not -- occurring 0 or more times, closing symbol
-comment     <!--([^-]|-[^-])*--> 
-
+whitespace			([[:blank:]\n])+
+comment     		<!--([^-]|-[^-])*--> 
+CDataStart 			"<![CDATA["
+CDataEnd			\]{2,}>
+string 				\"[^"]*\"
+NameChar 			[a-zA-Z0-9._:-]
+Name 				[a-zA-Z_:]{NameChar}*
+	// in attribute value < is also forbidden
+AttributeValue      \"[^&"]*\"|\'[^&']\'
+Attribute			{Name}={AttributeValue}
+StartTagOREmptyTag	<{Name}({whitespace}{Attribute})*{whitespace}?\/?>
+	// \<script>(.|\n)*</script>									ECHO;
+	// =[[:blank:]]*\"[^\"]*{comment}[^\"]*\"     					ECHO;
 %%
 
-"<"!\[CDATA\[(.|\n)*\]\]>      ECHO;
-=\"[^\"]*{comment}[^\"]*\"     ECHO;
-{comment}                      ;
+	
+{CDataStart}([^\]]*|\][^\]]|\]{2,}[^\]>])*{CDataEnd}      	ECHO;
+{StartTagOREmptyTag}										ECHO;
+{comment}                      								;
               
 %%
 
