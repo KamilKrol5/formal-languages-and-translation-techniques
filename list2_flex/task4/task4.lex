@@ -90,17 +90,21 @@ int pop() {
 }
 
 \n                  {
-    if (ptr != 0) {
-        printf("ERROR: Too few operators.\n");
-        error_var = false;
-        ptr = -1;
-        BEGIN(INITIAL);
-    } else {
+    if (ptr == 0) {
         int result = pop();
         if (error_var) {
             printf("ERROR: Too few arguments.\n");
         } else {
             printf("= %d\n", result);
+        }
+        error_var = false;
+        ptr = -1;
+        BEGIN(INITIAL);
+    } else {
+        if (error_var) {
+            printf("ERROR: Too few arguments.\n");
+        } else {
+            printf("ERROR: Too few operators.\n");
         }
         error_var = false;
         ptr = -1;

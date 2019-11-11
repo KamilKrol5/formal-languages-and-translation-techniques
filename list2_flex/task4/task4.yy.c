@@ -866,12 +866,7 @@ case 9:
 YY_RULE_SETUP
 #line 92 "task4.lex"
 {
-    if (ptr != 0) {
-        printf("ERROR: Too few operators.\n");
-        error_var = false;
-        ptr = -1;
-        BEGIN(INITIAL);
-    } else {
+    if (ptr == 0) {
         int result = pop();
         if (error_var) {
             printf("ERROR: Too few arguments.\n");
@@ -881,26 +876,35 @@ YY_RULE_SETUP
         error_var = false;
         ptr = -1;
         BEGIN(INITIAL);
+    } else {
+        if (error_var) {
+            printf("ERROR: Too few arguments.\n");
+        } else {
+            printf("ERROR: Too few operators.\n");
+        }
+        error_var = false;
+        ptr = -1;
+        BEGIN(INITIAL);
     }
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 111 "task4.lex"
+#line 115 "task4.lex"
 {
-    printf("ERROR: Unknown symbol %s.\n", yytext);
+    printf("ERROR: Unknown symbol %s\n", yytext);
     BEGIN(error);
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 116 "task4.lex"
+#line 120 "task4.lex"
 ;
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 117 "task4.lex"
+#line 121 "task4.lex"
 {
     ptr = -1;
     BEGIN(INITIAL);
@@ -908,10 +912,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 121 "task4.lex"
+#line 125 "task4.lex"
 ECHO;
 	YY_BREAK
-#line 915 "task4.yy.c"
+#line 919 "task4.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(error):
 	yyterminate();
@@ -1913,4 +1917,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 121 "task4.lex"
+#line 125 "task4.lex"
