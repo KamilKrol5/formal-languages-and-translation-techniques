@@ -14,9 +14,15 @@ Attribute			{Name}={AttributeValue}
 StartTagOREmptyTag	<{Name}({whitespace}{Attribute})*{whitespace}?\/?>
 	// \<script>(.|\n)*</script>									ECHO;
 	// =[[:blank:]]*\"[^\"]*{comment}[^\"]*\"     					ECHO;
+JSOpenTag			<script({whitespace}{Attribute})*{whitespace}?\/?>
+JSCloseTag			"</script>"
+
+%x		JSCODE
+
 %%
 
-	
+{JSOpenTag}													BEGIN(JSCODE); ECHO;
+<JSCODE>{JSCloseTag}												BEGIN(INITIAL); ECHO;
 {CDataStart}([^\]]*|\][^\]]|\]{2,}[^\]>])*{CDataEnd}      	ECHO;
 {StartTagOREmptyTag}										ECHO;
 {comment}                      								;
