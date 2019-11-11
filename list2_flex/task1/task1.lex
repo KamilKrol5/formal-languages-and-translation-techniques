@@ -9,12 +9,12 @@ word     [^[:blank:]\n]+
 
 %%
 
-{word}          { number_of_words++; ECHO;}
-\n				{ number_of_lines++; ECHO;}
 ^[[:blank:]]+   ;
 ^[[:blank:]]*\n ;
 [[:blank:]]+$   ;
 [[:blank:]]+    printf(" ");
+\n				{ number_of_lines++; ECHO;}
+{word}          { number_of_words++; ECHO;}
               
 %%
 
@@ -27,6 +27,6 @@ else
 		yyin = stdin;
 
 yylex();
-printf("Number of words: %d\n", number_of_words);
-printf("Number of lines: %d\n", number_of_lines);
+fprintf(stderr, "Number of words: %d\n", number_of_words);
+fprintf(stderr, "Number of lines: %d\n", number_of_lines);
 }
