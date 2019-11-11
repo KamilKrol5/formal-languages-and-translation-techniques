@@ -829,13 +829,18 @@ YY_RULE_SETUP
 #line 64 "task4.lex"
 {
     x = pop();
-    y = pop();
-    push((int) pow((double) y, (double) x));
+    if (x < 0) {
+        printf("ERROR: Excponent cannot be negative.\n");
+        BEGIN(error);
+    } else {
+        y = pop();
+        push((int) pow((double) y, (double) x));
+    }
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 70 "task4.lex"
+#line 75 "task4.lex"
 {
     x = pop();
     if (x == 0) {
@@ -849,7 +854,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 81 "task4.lex"
+#line 86 "task4.lex"
 {
     x = pop();
     if (x == 0) {
@@ -864,7 +869,7 @@ YY_RULE_SETUP
 case 9:
 /* rule 9 can match eol */
 YY_RULE_SETUP
-#line 92 "task4.lex"
+#line 97 "task4.lex"
 {
     if (ptr == 0) {
         int result = pop();
@@ -890,7 +895,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 115 "task4.lex"
+#line 120 "task4.lex"
 {
     printf("ERROR: Unknown symbol %s\n", yytext);
     BEGIN(error);
@@ -898,13 +903,13 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 120 "task4.lex"
+#line 125 "task4.lex"
 ;
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 121 "task4.lex"
+#line 126 "task4.lex"
 {
     ptr = -1;
     BEGIN(INITIAL);
@@ -912,10 +917,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 125 "task4.lex"
+#line 130 "task4.lex"
 ECHO;
 	YY_BREAK
-#line 919 "task4.yy.c"
+#line 924 "task4.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(error):
 	yyterminate();
@@ -1917,4 +1922,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 125 "task4.lex"
+#line 130 "task4.lex"

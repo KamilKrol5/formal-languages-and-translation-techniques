@@ -63,8 +63,13 @@ int pop() {
 
 \^                   {
     x = pop();
-    y = pop();
-    push((int) pow((double) y, (double) x));
+    if (x < 0) {
+        printf("ERROR: Excponent cannot be negative.\n");
+        BEGIN(error);
+    } else {
+        y = pop();
+        push((int) pow((double) y, (double) x));
+    }
 }
 
 \/                   {
