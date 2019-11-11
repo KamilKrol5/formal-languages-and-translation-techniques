@@ -8,7 +8,7 @@
     bool leave_doxygen_var = false;
 %}
 
-string                          \"[^"]*\"
+string                          \"([^"\\]|\\.)*\"
 include                         "#include"[[:blank:]]*"<"[^>]*">"
 
 multiline_comment               "/*"([^*]|\*+[^*/])*"*"+"/"
@@ -28,7 +28,7 @@ qt_style_comment                "/*!"([^*]|\*+[^*/])*"*"+"/"
         // <comment>"*"+[^*/]*     /* eat up '*'s not followed by '/'s */
         // <comment>"*"+"/"        BEGIN(INITIAL);
 
-<INITIAL,leave_doxygen>{string}                 ECHO;
+<INITIAL,leave_doxygen>{string}                  ECHO;
 <INITIAL,leave_doxygen>{include}                 ECHO;
 
 <leave_doxygen>{dot_net_comment}                ECHO;// { printf("DOTNET"); }
