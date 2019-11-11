@@ -844,13 +844,13 @@ case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
 #line 42 "task3.lex"
-{ printf("MULTILINE"); }
+;//{ printf("MULTILINE"); }
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
 YY_RULE_SETUP
 #line 43 "task3.lex"
-{ printf("SINGLE LINE COMMENT\n"); }
+;//{ printf("SINGLE LINE COMMENT\n"); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP

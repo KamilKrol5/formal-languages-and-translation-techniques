@@ -39,8 +39,8 @@ qt_style_comment                "/*!"([^*]|\*+[^*/])*"*"+"/"
 <leave_doxygen>{java_doc}                       ECHO;// { printf("JAVADOC"); }
 <leave_doxygen>{qt_style_comment}               ECHO;// { printf("QTSTYLE"); }
 
-<INITIAL,leave_doxygen>{multiline_comment}      { printf("MULTILINE"); }
-<INITIAL,leave_doxygen>{single_line_comment}    { printf("SINGLE LINE COMMENT\n"); }
+<INITIAL,leave_doxygen>{multiline_comment}      ;//{ printf("MULTILINE"); }
+<INITIAL,leave_doxygen>{single_line_comment}    ;//{ printf("SINGLE LINE COMMENT\n"); }
 
 %%
 
