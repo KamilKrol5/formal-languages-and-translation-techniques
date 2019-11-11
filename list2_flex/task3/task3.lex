@@ -12,15 +12,18 @@ string                          \"([^"\\]|\\.)*\"
 include                         "#include"[[:blank:]]*"<"[^>]*">"
 
 multiline_comment               "/*"([^*]|\*+[^*/])*"*"+"/"
-single_line_comment             \/{2}.*\n
+    //first case is normal case \/{2}.*\n 
+single_line_comment             (\/(\\\n)*\/|\/\/)(.*\\\n)*.*\n
 
-dot_net_comment                 \/{3}.*\n
-cpp_comment                     \/{2}!.*\n
+    // dot_net_comment                 \/{3}.*\n
+    // cpp_comment                     \/{2}!.*\n
+dot_net_comment                 \/(\\\n)*\/(\\\n)*\/(.*\\\n)*.*\n
+cpp_comment                     \/(\\\n)*\/(\\\n)*!(.*\\\n)*.*\n
 java_doc                        "/**"([^*]|\*+[^*/])*"*"+"/"
 qt_style_comment                "/*!"([^*]|\*+[^*/])*"*"+"/"
-%x comment
+
 %x leave_doxygen
-         
+
 %%
         // "/*"                    BEGIN(comment);
 
@@ -28,11 +31,11 @@ qt_style_comment                "/*!"([^*]|\*+[^*/])*"*"+"/"
         // <comment>"*"+[^*/]*     /* eat up '*'s not followed by '/'s */
         // <comment>"*"+"/"        BEGIN(INITIAL);
 
-<INITIAL,leave_doxygen>{string}                  ECHO;
-<INITIAL,leave_doxygen>{include}                 ECHO;
+<INITIAL,leave_doxygen>{string}                 ECHO;
+<INITIAL,leave_doxygen>{include}                ECHO;
 
 <leave_doxygen>{dot_net_comment}                ECHO;// { printf("DOTNET"); }
-<leave_doxygen>{cpp_comment}                    ECHO;// { printf("CPPCOMMENT"); } 
+<leave_doxygen>{cpp_comment}                    ECHO;// { printf("CPPCOMMENT"); }
 <leave_doxygen>{java_doc}                       ECHO;// { printf("JAVADOC"); }
 <leave_doxygen>{qt_style_comment}               ECHO;// { printf("QTSTYLE"); }
 

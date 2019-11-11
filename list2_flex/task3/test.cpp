@@ -29,13 +29,15 @@ int main(int argc, const char* argv)
 
     // \
     /*
-    baz();
+    baz1();
     /*/
     foo();
     //*/
 
 /\
-/*
+\
+\
+/* \
     baz();
 /*/
     foo();
@@ -47,3 +49,15 @@ int main(int argc, const char* argv)
 
 // wwww /*ww
 /*ggggggggggggggggggg */
+
+//! jjj \
+ababab \gg
+/\
+/\
+/\
+hhhh
+
+/\
+/\
+!llllllll\
+hhh
