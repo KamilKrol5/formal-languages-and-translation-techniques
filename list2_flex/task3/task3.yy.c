@@ -848,6 +848,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 /* rule 8 can match eol */
+*yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
+YY_LINENO_REWIND_TO(yy_cp - 1);
+(yy_c_buf_p) = yy_cp -= 1;
+YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
 #line 43 "task3.lex"
 ;//{ printf("SINGLE LINE COMMENT\n"); }
@@ -857,7 +861,7 @@ YY_RULE_SETUP
 #line 45 "task3.lex"
 ECHO;
 	YY_BREAK
-#line 861 "task3.yy.c"
+#line 865 "task3.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(leave_doxygen):
 	yyterminate();

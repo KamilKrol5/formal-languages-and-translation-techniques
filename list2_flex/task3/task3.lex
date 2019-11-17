@@ -13,7 +13,7 @@ include                         "#include"[[:blank:]]*"<"[^>]*">"
 
 multiline_comment               "/*"([^*]|\*+[^*/])*"*"+"/"
     //first case is normal case \/{2}.*\n 
-single_line_comment             (\/(\\\n)*\/|\/\/)(.*\\\n)*.*\n
+single_line_comment             (\/(\\\n)*\/|\/\/)(.*\\\n)*.*$
 
     // dot_net_comment                 \/{3}.*\n
     // cpp_comment                     \/{2}!.*\n
