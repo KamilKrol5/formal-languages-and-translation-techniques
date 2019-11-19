@@ -529,8 +529,8 @@ char *yytext;
 #line 1 "task2.lex"
 // open symbol, something which is not -- occurring 0 or more times, closing symbol
 // in attribute value < is also forbidden
-// \<script>(.|\n)*</script>									ECHO;
-// =[[:blank:]]*\"[^\"]*{comment}[^\"]*\"     					ECHO;
+// \<script>(.|\n)*</script>                                      ECHO;
+// =[[:blank:]]*\"[^\"]*{comment}[^\"]*\"                         ECHO;
 
 #line 536 "task2.yy.c"
 
@@ -1853,12 +1853,12 @@ void yyfree (void * ptr )
 
 int main( int argc, char **argv )
 {
-++argv, --argc;  /* skip over program name */
-if ( argc > 0 )
-		yyin = fopen( argv[0], "r" );
-else
-		yyin = stdin;
+    ++argv, --argc;  /* skip over program name */
+    if ( argc > 0 )
+            yyin = fopen( argv[0], "r" );
+    else
+            yyin = stdin;
 
-yylex();
+    yylex();
 }
 
