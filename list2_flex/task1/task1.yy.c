@@ -472,7 +472,7 @@ char *yytext;
 #line 1 "task1.lex"
 #line 6 "task1.lex"
     int number_of_words = 0;
-	int number_of_lines = 0;
+    int number_of_lines = 0;
 #line 477 "task1.yy.c"
 
 #define INITIAL 0
@@ -1805,14 +1805,14 @@ void yyfree (void * ptr )
 
 int main( int argc, char **argv )
 {
-++argv, --argc;  /* skip over program name */
-if ( argc > 0 )
-		yyin = fopen( argv[0], "r" );
-else
-		yyin = stdin;
+    ++argv, --argc;  /* skip over program name */
+    if ( argc > 0 )
+            yyin = fopen( argv[0], "r" );
+    else
+            yyin = stdin;
 
-yylex();
-fprintf(stderr, "Number of words: %d\n", number_of_words);
-fprintf(stderr, "Number of lines: %d\n", number_of_lines);
+    yylex();
+    fprintf(stderr, "Number of words: %d\n", number_of_words);
+    fprintf(stderr, "Number of lines: %d\n", number_of_lines);
 }
 
