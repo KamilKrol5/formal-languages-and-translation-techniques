@@ -3,7 +3,7 @@ CC=gcc
 all: calculator
 
 calculator: main.c calculator.yy.c calculator.tab.c
-	$(CC) -o $@ $^ -lfl -lm -Werror
+	$(CC) -o $@ $^ -lfl -lm 
 
 calculator.yy.c: calculator.lex
 	flex -o $@ $^

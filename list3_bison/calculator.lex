@@ -11,7 +11,7 @@ num     [0-9]+
 [[:blank:]]+                    ;
 <INITIAL,COMMENT>"\\\n"         ;
 <COMMENT>\n                     BEGIN(INITIAL);
-{num}                           yylval = atoi(yytext); return NUM;
+{num}                           yylval = yytext; return NUM;
 \n                              return '\n';
 "+"                             return '+';
 "-"                             return '-';
