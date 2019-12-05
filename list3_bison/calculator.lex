@@ -1,5 +1,9 @@
 %{
     #include "calculator.tab.h"
+    struct expression {
+        int value;
+        char* rpn;
+    };
 %}
 
 num     [0-9]+
@@ -11,7 +15,7 @@ num     [0-9]+
 [[:blank:]]+                    ;
 <INITIAL,COMMENT>"\\\n"         ;
 <COMMENT>\n                     BEGIN(INITIAL);
-{num}                           yylval = yytext; return NUM;
+{num}                           yylval.value = atoi(yytext); yylval.rpn=strdup(yytext); return NUM;
 \n                              return '\n';
 "+"                             return '+';
 "-"                             return '-';
