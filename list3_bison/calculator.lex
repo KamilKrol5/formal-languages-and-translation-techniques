@@ -1,9 +1,8 @@
+%option noyywrap
+
 %{
     #include "calculator.tab.h"
-    struct expression {
-        int value;
-        char* rpn;
-    };
+    #include "expression.h"
 %}
 
 num     [0-9]+
@@ -15,7 +14,7 @@ num     [0-9]+
 [[:blank:]]+                    ;
 <INITIAL,COMMENT>"\\\n"         ;
 <COMMENT>\n                     BEGIN(INITIAL);
-{num}                           yylval.value = atoi(yytext); yylval.rpn=strdup(yytext); return NUM;
+{num}                           yylval.value = atoi(yytext); yylval.rpn = strdup(yytext); yylval.isOnlyNumber = true; return NUM;
 \n                              return '\n';
 "+"                             return '+';
 "-"                             return '-';
@@ -24,6 +23,8 @@ num     [0-9]+
 "^"                             return '^';
 "%"                             return '%';
 "~"                             return '~';
-"#"                             BEGIN(COMMENT);
+"("                             return '(';
+")"                             return ')';
+^"#"                            BEGIN(COMMENT);
 .                               return yytext[0];
 <COMMENT>.                      ;
