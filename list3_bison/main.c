@@ -10,5 +10,5 @@ int main(int argc, char const *argv[])
 }
 
 void yyerror(char const * m) {
-    printf("ERROR\n");
+    printf("ERROR: %s\n", m);
 }
